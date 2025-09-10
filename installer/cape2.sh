@@ -970,8 +970,18 @@ function dependencies() {
 
     # APT poetry is ultra outdated
     curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 -
-    echo "PATH=$PATH:/etc/poetry/bin/" >> /etc/bash.bashrc
+    echo "export PATH=$PATH:/etc/poetry/bin/" >> /etc/bash.bashrc
+    # 临时添加到当前会话的PATH中
     source /etc/bash.bashrc
+    export PATH="/etc/poetry/bin:$PATH"
+
+    # 检查poetry是否可用
+    if ! command -v poetry &> /dev/null
+    then
+        echo "Poetry could not be found. Exiting installation."
+        exit 1
+    fi
+
     poetry self add poetry-plugin-shell
 
     sudo apt-get install -y locate # used by extra/libvirt_installer.sh
