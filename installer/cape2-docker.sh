@@ -615,8 +615,8 @@ function install_logrotate() {
     # du -sh /var/log/* | sort -hr | head -n10
     # thanks digitalocean.com for the manual
     # https://www.digitalocean.com/community/tutorials/how-to-manage-logfiles-with-logrotate-on-ubuntu-16-04
-    if [ ! -f /etc/logrotate.d/cape-full.conf ]; then
-            cat >> /etc/logrotate.d/cape-full.conf << EOF
+    if [ ! -f /etc/logrotate.d/cape.conf ]; then
+            cat >> /etc/logrotate.d/cape.conf << EOF
 #/var/log/*.log {
 #    daily
 #    missingok
@@ -1340,10 +1340,10 @@ function install_supervisor() {
     mkdir -p /var/log
 
     # 直接拷贝完整的 supervisor 配置文件（包含所有服务包括 MongoDB）
-    cp /opt/CAPEv2/supervisor/cape-full.conf /etc/supervisor/conf.d/cape-full.conf
+    cp /opt/CAPEv2/supervisor/cape.conf /etc/supervisor/conf.d/cape.conf
 
     # 确保配置文件权限正确
-    chmod 644 /etc/supervisor/conf.d/cape-full.conf
+    chmod 644 /etc/supervisor/conf.d/cape.conf
 }
 
 
