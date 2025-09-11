@@ -677,7 +677,8 @@ ExecStart=/usr/bin/mongos --configdb cape_config/${DIST_MASTER_IP}:27019 --port 
 WantedBy=multi-user.target
 EOL
         fi
-        systemctl daemon-reload
+        supervisorctl reread
+        supervisorctl update
         systemctl enable mongos.service
         systemctl start mongos.service
 
@@ -843,7 +844,8 @@ ExecStart=/bin/sh -c 'echo always | tee /sys/kernel/mm/transparent_hugepage/enab
 WantedBy=basic.target
 EOF
 
-        systemctl daemon-reload
+        supervisorctl reread
+        supervisorctl update
         sudo systemctl enable enable-transparent-huge-pages
 
         if [ -f /lib/systemd/system/mongod.service ]; then
@@ -851,7 +853,8 @@ EOF
             systemctl disable mongod.service
             rm /lib/systemd/system/mongod.service
             rm /lib/systemd/system/mongod.service
-            systemctl daemon-reload
+            supervisorctl reread
+            supervisorctl update
         fi
 
         if [ ! -f /lib/systemd/system/mongodb.service ]; then
@@ -1500,7 +1503,8 @@ function install_guacamole() {
     sudo -u ${USER} bash -c "export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring; ${poetry_path} install"
     cd ..
 
-    systemctl daemon-reload
+    supervisorctl reread
+    supervisorctl update
     systemctl enable guacd.service guac-web.service
     systemctl start guacd.service guac-web.service
 }
