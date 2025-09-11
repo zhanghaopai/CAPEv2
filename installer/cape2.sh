@@ -681,7 +681,7 @@ EOL
         systemctl enable mongos.service
         systemctl start mongos.service
 
-        echo -e "\n\n\n[+] CAPE distributed documentation: https://github.com/kevoreilly/CAPEv2/blob/master/docs/book/src/usage/dist.rst"
+        echo -e "\n\n\n[+] CAPE distributed documentation: https://github.com/zhanghaopai/CAPEv2/blob/master/docs/book/src/usage/dist.rst"
         echo -e "\t https://docs.mongodb.com/manual/tutorial/enable-authentication/"
         echo -e "\t https://docs.mongodb.com/manual/administration/security-checklist/"
         echo -e "\t https://docs.mongodb.com/manual/core/security-users/#sharding-security"
@@ -1257,7 +1257,7 @@ function install_CAPE() {
     cd /opt || return
     # if folder CAPEv2 dosn't exist, clone it
     if [ ! -d CAPEv2 ]; then
-        git clone https://github.com/kevoreilly/CAPEv2/
+        git clone https://github.com/zhanghaopai/CAPEv2/
     fi
     chown ${USER}:${USER} -R /opt/CAPEv2/
     #chown -R root:${USER} /usr/var/malheur/
