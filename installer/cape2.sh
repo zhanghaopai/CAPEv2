@@ -922,6 +922,9 @@ function install_postgresql() {
     sudo apt-get update
     sudo apt-get install -y libpq-dev postgresql postgresql-client
 
+    sudo mkdir mkdir -p /var/run/postgresql
+    sudo chown -R postgres:postgres /var/run/postgresql
+
     sudo systemctl enable postgresql.service
     sudo systemctl start postgresql.service
 
