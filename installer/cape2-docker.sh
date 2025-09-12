@@ -1272,7 +1272,7 @@ function install_CAPE() {
     fi
 
     cd "/opt/CAPEv2/" || return
-    sudo -u ${USER} bash -c 'export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring; CRYPTOGRAPHY_DONT_BUILD_RUST=1 /etc/poetry/bin/poetry install'
+    sudo -u ${USER} bash -c 'export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring; export POETRY_VIRTUALENVS_IN_PROJECT=true; CRYPTOGRAPHY_DONT_BUILD_RUST=1 /etc/poetry/bin/poetry install'
 
     if [ "$DISABLE_LIBVIRT" -eq 0 ]; then
         sudo -u ${USER} bash -c 'export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring; /etc/poetry/bin/poetry run extra/libvirt_installer.sh'
