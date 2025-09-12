@@ -1267,9 +1267,6 @@ function install_CAPE() {
     fi
     chown ${USER}:${USER} -R /opt/CAPEv2/
 
-    ##poetry install venv in project
-    poetry config virtualenvs.in-project true
-
     if ! crontab -l | grep -q -F 'delete-unused-file-data-in-mongo'; then
         crontab -l | { cat; echo "30 1 * * 0 cd /opt/CAPEv2 && sudo -u ${USER} /etc/poetry/bin/poetry run python ./utils/cleaners.py --delete-unused-file-data-in-mongo"; } | crontab -
     fi
