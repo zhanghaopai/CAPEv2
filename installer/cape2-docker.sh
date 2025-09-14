@@ -1291,7 +1291,7 @@ function install_CAPE() {
     # copy *.conf.default to *.conf so we have all properly updated fields, as we can't ignore old configs in repository
     for filename in conf/default/*.conf.default; do cp -vf "./$filename" "./$(echo "$filename" | sed -e 's/.default//g' | sed -e 's/default//g')";  done
 
-    sed -i "/connection =/cconnection = postgresql://${USER}:${PASSWD}@localhost:5432/${USER}" conf/cuckoo.conf
+#    sed -i "/connection =/cconnection = postgresql://${USER}:${PASSWD}@localhost:5432/${USER}" conf/cuckoo.conf
     # sed -i "/tor/{n;s/enabled = no/enabled = yes/g}" conf/routing.conf
     # sed -i "/memory_dump = off/cmemory_dump = on" conf/cuckoo.conf
     # sed -i "/machinery =/cmachinery = kvm" conf/cuckoo.conf
