@@ -1424,7 +1424,7 @@ function install_volatility3() {
     sudo -u ${USER} /etc/poetry/bin/poetry run pip3 install git+https://github.com/volatilityfoundation/volatility3
     vol_path=$(sudo -u ${USER} /etc/poetry/bin/poetry run python3 -c "import volatility3.plugins;print(volatility3.__file__.replace('__init__.py', 'symbols/'))")
     cd $vol_path || return
-    wget -q https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip -O windows.zip
+    wget https://downloads.volatilityfoundation.org/volatility3/symbols/windows.zip -O windows.zip
     unzip -o windows.zip
     rm windows.zip
     chown "${USER}:${USER}" $vol_path -R
@@ -1436,7 +1436,7 @@ function install_mitmproxy() {
     sudo chown ${USER}:${USER} /opt/mitmproxy
     cd /opt/mitmproxy
     mitmproxy_version=$(curl -s https://api.github.com/repos/mitmproxy/mitmproxy/releases/latest | grep '"tag_name":' | cut -d '"' -f 4 | sed 's/^v//')
-    wget -q https://downloads.mitmproxy.org/"$mitmproxy_version"/mitmproxy-"$mitmproxy_version"-linux-x86_64.tar.gz -O mitmproxy.tar.gz
+    wget https://downloads.mitmproxy.org/"$mitmproxy_version"/mitmproxy-"$mitmproxy_version"-linux-x86_64.tar.gz -O mitmproxy.tar.gz
     tar xvzf mitmproxy.tar.gz
     rm mitmproxy.tar.gz
     chown "${USER}:${USER}" /opt/mitmproxy -R
